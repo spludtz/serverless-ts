@@ -2,7 +2,7 @@ import { main as lambdaFunc } from '@functions/hello/handler';
 import { mockLambdaContext } from '@libs/mocks';
 import { APIGatewayProxyResult } from 'aws-lambda';
 
-describe('Testing lambda function handler', () => {
+describe('Testing lambda function handlers', () => {
   test('hello', (done) => {
     const event = require('@functions/hello/mock.json');
 
