@@ -1,11 +1,10 @@
+import type { APIGatewayProxyResult, Callback } from 'aws-lambda';
 import { main as lambdaFunc } from '@functions/hello/handler';
+import mockEvent from '@functions/hello/mock.json';
 import { mockLambdaContext } from '@libs/mocks';
-import { APIGatewayProxyResult, Callback } from 'aws-lambda';
 
 describe('Testing lambda function handlers', () => {
   test('hello', (done) => {
-    const event = require('@functions/hello/mock.json');
-
     const callback: Callback<APIGatewayProxyResult> = (err, res) => {
       if (err) {
         done(err);
@@ -18,6 +17,6 @@ describe('Testing lambda function handlers', () => {
       }
     };
 
-    lambdaFunc(event, mockLambdaContext, callback);
+    lambdaFunc(mockEvent, mockLambdaContext, callback);
   });
 });

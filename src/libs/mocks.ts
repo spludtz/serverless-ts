@@ -1,4 +1,4 @@
-import { Context } from 'aws-lambda';
+import type { Context } from 'aws-lambda';
 
 export const mockLambdaContext: Context = {
   callbackWaitsForEmptyEventLoop: true,
@@ -10,7 +10,7 @@ export const mockLambdaContext: Context = {
   logGroupName: 'mock-log-group-name',
   logStreamName: 'mock-log-stream-name',
   getRemainingTimeInMillis: () => 5000,
-  done: () => {},
-  fail: () => {},
-  succeed: () => {},
+  done: () => true,
+  fail: () => true,
+  succeed: () => true,
 };
