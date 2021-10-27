@@ -1,8 +1,11 @@
-# npm packages
+# package directories
 node_modules
+jspm_packages
 
-# built files
+# Serverless directories
 .serverless
+
+# esbuild directories
 .esbuild
 
 # VSCode user-specific settings
