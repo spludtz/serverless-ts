@@ -13,7 +13,7 @@ describe('Testing lambda function handlers', () => {
         const body = JSON.parse(res.body);
 
         expect(res.statusCode).toBe(200);
-        expect(body.message).toEqual('Hello Frederic!');
+        expect(body.message).toBe('Hello Frederic!');
         done();
       }
     };
