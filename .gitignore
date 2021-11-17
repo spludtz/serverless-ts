@@ -10,4 +10,4 @@ jspm_packages
 
 # VSCode user-specific settings
 .vscode
-endpoint-test.http
+.env

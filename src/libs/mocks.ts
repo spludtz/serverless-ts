@@ -1,4 +1,23 @@
-import type { Context } from 'aws-lambda';
+import type { Context, EventBridgeEvent } from 'aws-lambda';
+import { FromSchema } from 'json-schema-to-ts';
+import { eventBridgeDetailSchema } from '@functions/hello/schema';
+
+export const mockEventBridgeEvent: EventBridgeEvent<
+  string,
+  FromSchema<typeof eventBridgeDetailSchema>
+> = {
+  version: '0',
+  id: 'mock-id',
+  'detail-type': 'Notify Users',
+  source: 'example.app',
+  account: 'mock-acct',
+  time: 'mock-time',
+  region: 'ap-southeast-1',
+  resources: [],
+  detail: {
+    message: 'Hello World!',
+  },
+};
 
 export const mockLambdaContext: Context = {
   callbackWaitsForEmptyEventLoop: true,

@@ -1,7 +1,15 @@
-export default {
+export const eventBridgeDetailSchema = {
   type: 'object',
   properties: {
-    name: { type: 'string' },
+    message: { type: 'string' },
   },
-  required: ['name'],
+  required: ['message'],
+} as const;
+
+export const eventBridgeResultSchema = {
+  type: 'object',
+  properties: {
+    status: { type: 'string' },
+  },
+  required: ['status'],
 } as const;

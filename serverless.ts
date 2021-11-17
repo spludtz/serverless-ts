@@ -16,14 +16,17 @@ const serverlessConfiguration: AWS = {
       platform: 'node',
     },
   },
-  plugins: ['serverless-esbuild'],
+  plugins: ['serverless-esbuild', 'serverless-dotenv-plugin'],
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
     region: 'ap-southeast-1',
-    apiGateway: {
-      minimumCompressionSize: 1024,
-      shouldStartNameWithService: true,
+    // apiGateway: {
+    //   minimumCompressionSize: 1024,
+    //   shouldStartNameWithService: true,
+    // },
+    eventBridge: {
+      useCloudFormation: true,
     },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',

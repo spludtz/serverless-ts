@@ -1,17 +1,15 @@
-import type { APIGatewayProxyResult } from 'aws-lambda';
-import type { ValidatedEventAPIGatewayProxyEvent } from '@libs/apiGateway';
-import { formatJSONResponse } from '@libs/apiGateway';
-import { middyfy } from '@libs/lambda';
+import { ValidatedEventBridgeHandler } from '@libs/eventBridge';
+import { eventBridgeDetailSchema, eventBridgeResultSchema } from './schema';
 
-import schema from './schema';
+const hello: ValidatedEventBridgeHandler<
+  typeof eventBridgeDetailSchema,
+  typeof eventBridgeResultSchema
+> = async (event) => {
+  console.log(event.detail.message);
 
-const hello: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
-  event
-): Promise<APIGatewayProxyResult> => {
-  return formatJSONResponse({
-    message: `Hello ${event.body.name}!`,
-    event,
-  });
+  return {
+    status: 'success',
+  };
 };
 
-export const main = middyfy(hello);
+export const main = hello;

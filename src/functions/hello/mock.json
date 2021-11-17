@@ -1,6 +1,13 @@
 {
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "body": "{\"name\": \"Frederic\"}"
+  "version": "0",
+  "id": "mock-id",
+  "detail-type": "Notify Users",
+  "source": "example.app",
+  "account": "mock-acct",
+  "time": "mock-time",
+  "region": "ap-southeast-1",
+  "resources": [],
+  "detail": {
+    "message": "Hello World!"
+  }
 }
