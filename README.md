@@ -4,57 +4,31 @@ This project has been generated using the `aws-nodejs-typescript` template from 
 
 For detailed instructions, please refer to the [documentation](https://www.serverless.com/framework/docs/providers/aws/).
 
-## Installation/deployment instructions
+## Installation / deployment instructions
 
 Depending on your preferred package manager, follow the instructions below to deploy your project.
 
 > **Requirements**: NodeJS `lts/fermium (v.14.15.0)`. If you're using [nvm](https://github.com/nvm-sh/nvm), run `nvm use` to ensure you're using the same Node version in local and in your lambda's runtime.
 
-### Using NPM
+### Installation and Initial Setup
 
-- Run `npm i` to install the project dependencies
-- Run `npx sls deploy` to deploy this stack to AWS
-
-### Using Yarn
-
-- Run `yarn` to install the project dependencies
-- Run `yarn sls deploy` to deploy this stack to AWS
+- Run `npm install` to install project dependencies
+- Rename `.env.template` to `.env` and modify the file contents based on your local setup
 
 ### Running Unit Test
 
-- Run `npx jest` if you're using NPM
-- Run `yarn jest` if you're using Yarn
+- Run `npx jest` to run unit tests
 
-## Test your service
+### Test your Lambda Functions Locally
 
-This template contains a single lambda function triggered by an HTTP request made on the provisioned API Gateway REST API `/hello` route with `POST` method. The request body must be provided as `application/json`. The body structure is tested by API Gateway against `src/functions/hello/schema.ts` JSON-Schema definition: it must contain the `name` property.
-
-- requesting any other path than `/hello` with any other method than `POST` will result in API Gateway returning a `403` HTTP error code
-- sending a `POST` request to `/hello` with a payload **not** containing a string property named `name` will result in API Gateway returning a `400` HTTP error code
-- sending a `POST` request to `/hello` with a payload containing a string property named `name` will result in API Gateway returning a `200` HTTP status code with a message saluting the provided name and the detailed event processed by the lambda
-
-> :warning: As is, this template, once deployed, opens a **public** endpoint within your AWS account resources. Anybody with the URL can actively execute the API Gateway endpoint and the corresponding lambda. You should protect this endpoint with the authentication method of your choice.
-
-### Locally
-
-In order to test the hello function locally, run the following command:
-
-- `npx sls invoke local -f hello --path src/functions/hello/mock.json` if you're using NPM
-- `yarn sls invoke local -f hello --path src/functions/hello/mock.json` if you're using Yarn
+- `npx sls invoke local -f <function_name>`
+- Specify parameter `--path <dir>/<file>.json` for input json data
 
 Check the [sls invoke local command documentation](https://www.serverless.com/framework/docs/providers/aws/cli-reference/invoke-local/) for more information.
 
-### Remotely
+### Deploy
 
-Copy and replace your `url` - found in Serverless `deploy` command output - and `name` parameter in the following `curl` command in your terminal or in Postman to test your newly deployed application.
-
-```
-curl --location --request POST 'https://myApiEndpoint/dev/hello' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "name": "Frederic"
-}'
-```
+- Run `npx sls deploy` to deploy this stack to AWS
 
 ## Template features
 
@@ -74,7 +48,7 @@ The project code base is mainly located within the `src` folder. This folder is 
 │   │   │   └── hello.spec.ts           # `Hello` lambda unit test
 │   │   │
 │   │   └── libs
-│   │       └── apiGateway.spec.ts      # API Gateway helpers unit test
+│   │       └── eventBridge.spec.ts     # EventBridge helpers unit test
 │   │
 │   ├── functions                       # Lambda configuration and source code folder
 │   │   ├── hello
@@ -86,15 +60,17 @@ The project code base is mainly located within the `src` folder. This folder is 
 │   │   └── index.ts                    # Import/export of all lambda configurations
 │   │
 │   └── libs                            # Lambda shared code
-│       ├── apiGateway.ts               # API Gateway specific helpers
+│       ├── eventBridge.ts              # EventBridge specific helpers
 │       ├── handlerResolver.ts          # Sharable library for resolving lambda handlers
 │       └── lambda.ts                   # Lambda middleware
 │
+├── .env                        # Environment variables
 ├── package.json
+├── dotenv-config.ts            # Dotenv config file (for environment variables)
+├── jest.config.ts              # Jest config file
 ├── serverless.ts               # Serverless service file
 ├── tsconfig.json               # Typescript compiler configuration
-├── tsconfig.paths.json         # Typescript paths
-└── webpack.config.js           # Webpack configuration
+└── tsconfig.paths.json         # Typescript paths
 ```
 
 ### 3rd party libraries

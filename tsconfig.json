@@ -14,7 +14,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true
   },
-  "include": ["src/**/*.ts", "config.ts", "serverless.ts"],
+  "include": ["src/**/*.ts", "dotenv-config.ts", "serverless.ts"],
   "exclude": [
     "node_modules/**/*",
     ".serverless/**/*",
